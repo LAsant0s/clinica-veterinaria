@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.assis.domain.Animal;
 import com.assis.domain.Exame;
 import com.assis.exceptions.ExameNotFoundException;
 import com.assis.repository.ExameRepository;
@@ -14,13 +15,20 @@ public class ExameService {
 
 	@Autowired
 	private ExameRepository repo;
+	
+	@Autowired
+	private AnimalService aService;
 
 	public List<Exame> allExames() {
 		return repo.findAll();
 	}
 	
 	public Exame newExame(Exame exame) {
-		return repo.save(exame);
+		Animal currentAnimal = aService.findAnimalById(exame.getAnimal_id());
+		Exame newExam = repo.save(exame);
+		currentAnimal.getExames().add(exame);
+		aService.updateAnimalById(currentAnimal.getId(), currentAnimal); 
+		return newExam;
 	}
 	
 	public Exame updateExameById(Integer id, Exame exame) {

@@ -17,23 +17,42 @@ public class Exame implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private Integer animal_id; 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private boolean hemograma;
-	private boolean colesterol;
-	private boolean fosforo;
-	private boolean calcio;
-	private boolean glicose; 
-	private boolean magnesio; 
-	private boolean ureia;
-	private boolean potassio;
+	@NotNull(message = "hemograma não pode ser nulo")
+	private Boolean hemograma;
+	
+	@NotNull(message = "colesterol não pode ser nulo")
+	private Boolean colesterol;
+	
+	@NotNull(message = "fosforo não pode ser nulo")
+	private Boolean fosforo;
+	
+	@NotNull(message = "calcio não pode ser nulo")
+	private Boolean calcio;
+	
+	@NotNull(message = "glicose não pode ser nulo")
+	private Boolean glicose; 
+	
+	@NotNull(message = "magnesio não pode ser nulo")
+	private Boolean magnesio;
+	
+	@NotNull(message = "ureia não pode ser nulo")
+	private Boolean ureia;
+	
+	@NotNull(message = "potassio não pode ser nulo")
+	private Boolean potassio;
 	
 	@NotNull(message = "Ultrassonografia não pode ser nulo")
 	private String ultrassonografia;
+	
 	@NotNull(message = "Radiografia não pode ser nulo")
 	private String radiografia;
+	
 	@NotNull(message = "Date não pode ser nulo")
 	private Date date;
 }
