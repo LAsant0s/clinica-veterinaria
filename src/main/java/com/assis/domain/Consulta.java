@@ -21,6 +21,9 @@ public class Consulta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@NotNull(message = "animal_id não pode ser nulo")
+	private Integer animal_id;
+	
 	@NotNull(message = "Data não pode ser nulo")
 	private Date date;
 	

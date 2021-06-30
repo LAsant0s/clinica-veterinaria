@@ -23,7 +23,7 @@ public class Animal implements Serializable {
 	private List<Exame> exames = new ArrayList<Exame>();
 	
 	@OneToMany
-	private List<Consulta> consulta = new ArrayList<Consulta>();
+	private List<Consulta> consultas = new ArrayList<Consulta>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

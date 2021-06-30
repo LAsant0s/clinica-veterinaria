@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.assis.domain.Animal;
 import com.assis.domain.Consulta;
 import com.assis.exceptions.ConsultaNotFoundException;
 import com.assis.repository.ConsultaRepository;
@@ -14,13 +15,20 @@ public class ConsultaService {
 
 	@Autowired
 	private ConsultaRepository repo;
+	
+	@Autowired 
+	private AnimalService aService; 
 
 	public List<Consulta> allConsults() {
 		return repo.findAll();
 	}
 	
 	public Consulta newConsult(Consulta consulta) {
-		return repo.save(consulta);
+		Animal currentAnimal = aService.findAnimalById(consulta.getAnimal_id());
+		Consulta newConsult = repo.save(consulta); 
+		currentAnimal.getConsultas().add(consulta);
+		aService.updateAnimalById(currentAnimal.getId(), currentAnimal); 
+		return newConsult;
 	}
 	
 	public Consulta updateConsultById(Integer id, Consulta consulta) {
