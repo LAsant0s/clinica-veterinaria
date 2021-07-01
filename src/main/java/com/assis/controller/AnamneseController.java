@@ -43,6 +43,11 @@ public class AnamneseController {
 		return service.updateAnamneseById(id, anamnese); 
 	}
 	
+	@PostMapping("/insertDesease/{idAnamnese}&{idDoenca}") 
+	public Anamnese insertNewDoenca(@Valid @PathVariable Integer idAnamnese, @PathVariable Integer idDoenca) {
+		return service.InsertNewDoenca(idAnamnese, idDoenca); 
+	}
+	
 	@DeleteMapping("id={id}")
 	public void deleteAnamnese(@PathVariable Integer id) {
 		service.deleteAnamneseById(id);

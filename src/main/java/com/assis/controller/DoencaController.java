@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.assis.domain.Doencas;
+import com.assis.domain.Doenca;
 import com.assis.service.DoencasService;
 
 @RestController
@@ -24,22 +24,22 @@ public class DoencaController {
 	private DoencasService service;
 	
 	@GetMapping
-	public List<Doencas> allDoencas() {
+	public List<Doenca> allDoencas() {
 		return service.allDoencas(); 
 	}
 	
 	@PostMapping("/newDoenca")
-	public Doencas newDoenca(@Valid @RequestBody Doencas doencas) {
+	public Doenca newDoenca(@Valid @RequestBody Doenca doencas) {
 		return service.newDoenca(doencas);	
 	}
 	
 	@GetMapping("/id={id}")
-	public Doencas findDoenca(@PathVariable Integer id) throws Exception {
+	public Doenca findDoenca(@PathVariable Integer id) throws Exception {
 		return service.findDoencaById(id);
 	}
 	
 	@PostMapping("/id={id}") 
-	public Doencas updateDoenca(@Valid @RequestBody Doencas doencas, @PathVariable Integer id) {
+	public Doenca updateDoenca(@Valid @RequestBody Doenca doencas, @PathVariable Integer id) {
 		return service.updateDoencaById(id, doencas); 
 	}
 	

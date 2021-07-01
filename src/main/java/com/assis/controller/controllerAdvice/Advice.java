@@ -16,6 +16,7 @@ import com.assis.exceptions.AnimalNotFoundException;
 import com.assis.exceptions.ConsultaNotFoundException;
 import com.assis.exceptions.DoencaNotFoundException;
 import com.assis.exceptions.ExameNotFoundException;
+import com.assis.exceptions.InvalidOperationException;
 
 @ControllerAdvice
 public class Advice {
@@ -52,6 +53,13 @@ public class Advice {
      @ExceptionHandler(DoencaNotFoundException.class)
      @ResponseStatus(HttpStatus.NOT_FOUND)
      String DoencaNotFoundHandler(DoencaNotFoundException ex) {
+             return ex.getMessage();
+     }
+	 
+	 @ResponseBody
+     @ExceptionHandler(InvalidOperationException.class)
+     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+     String InvalidOperationHandler(InvalidOperationException ex) {
              return ex.getMessage();
      }
 	 
