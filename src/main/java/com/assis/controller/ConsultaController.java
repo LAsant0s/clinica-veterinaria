@@ -29,9 +29,9 @@ public class ConsultaController {
 		return service.allConsults(); 
 	}
 	
-	@PostMapping("/newConsult")
-	public Consulta newConsult(@Valid @RequestBody Consulta consulta) {
-		return service.newConsult(consulta);	
+	@PostMapping(value = {"/newConsult", "/newConsult/A={idAnamnsese}"})
+	public Consulta newConsult(@Valid @RequestBody Consulta consulta, @PathVariable(required = false) Integer idAnamnsese) {
+		return service.newConsult(consulta, idAnamnsese);	
 	}
 	
 	@GetMapping("/id={id}")

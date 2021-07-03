@@ -42,7 +42,7 @@ public class Animal implements Serializable {
 	private String pelagem;
 	
 	@NotNull(message = "Peso não pode ser nulo")
-	private Integer peso;
+	private Double peso;
 	
 	@NotNull(message = "Tipo não pode ser nulo")
 	private Integer tipo;

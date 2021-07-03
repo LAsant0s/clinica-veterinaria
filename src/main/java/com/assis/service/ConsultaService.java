@@ -18,13 +18,19 @@ public class ConsultaService {
 	
 	@Autowired 
 	private AnimalService aService; 
+	
+	@Autowired 
+	private AnamneseService anamneseService;
 
 	public List<Consulta> allConsults() {
 		return repo.findAll();
 	}
 	
-	public Consulta newConsult(Consulta consulta) {
+	public Consulta newConsult(Consulta consulta, Integer idAnamnese) {
 		Animal currentAnimal = aService.findAnimalById(consulta.getAnimal_id());
+		if(idAnamnese != null) {
+			consulta.setAnamnese(anamneseService.findAnamneseById(idAnamnese));
+		}
 		Consulta newConsult = repo.save(consulta); 
 		currentAnimal.getConsultas().add(consulta);
 		aService.updateAnimalById(currentAnimal.getId(), currentAnimal); 
