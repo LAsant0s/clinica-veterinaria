@@ -1,7 +1,6 @@
 package com.assis.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
@@ -48,10 +48,12 @@ public class Animal implements Serializable {
 	private Integer tipo;
 	
 	@NotNull(message = "Data de Nascimento não pode ser nulo")
-	private Date dataNascimento;
+	@Pattern(regexp= "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", message = "Datas devem estar no formato YYYY-MM-DD")
+	private String dataNascimento;
 	
 	@NotNull(message = "Data de cadastro não pode ser nulo")
-	private Date dataCadastro;
+	@Pattern(regexp= "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", message = "Datas devem estar no formato YYYY-MM-DD")
+	private String dataCadastro;
 	
 	@NotNull(message = "Estado não pode ser nulo")
 	private Integer estado;

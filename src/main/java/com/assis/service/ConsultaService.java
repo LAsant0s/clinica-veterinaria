@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.assis.domain.Animal;
 import com.assis.domain.Consulta;
-import com.assis.exceptions.ConsultaNotFoundException;
+import com.assis.exceptions.EntityNotFoundException;
 import com.assis.repository.ConsultaRepository;
 
 @Service
@@ -32,14 +32,14 @@ public class ConsultaService {
 	}
 	
 	public Consulta updateConsultById(Integer id, Consulta consulta) {
-		Consulta entityId = repo.findById(id).orElseThrow(() -> new ConsultaNotFoundException(id));
+		Consulta entityId = repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta", id));
 		consulta.setId(entityId.getId());
 		return repo.save(consulta);
 	}
 	
 	public Consulta findConsultById(Integer id) {
 		return repo.findById(id).
-				orElseThrow(() -> new ConsultaNotFoundException(id));
+				orElseThrow(() -> new EntityNotFoundException("Consulta", id));
 	}
 	
 	public void deleteConsultById(Integer id) {

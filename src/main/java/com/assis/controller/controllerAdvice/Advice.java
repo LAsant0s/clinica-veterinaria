@@ -11,55 +11,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.assis.exceptions.AnamneseNotFoundException;
-import com.assis.exceptions.AnimalNotFoundException;
-import com.assis.exceptions.ConsultaNotFoundException;
-import com.assis.exceptions.DoencaNotFoundException;
-import com.assis.exceptions.ExameNotFoundException;
+import com.assis.exceptions.EntityNotFoundException;
 import com.assis.exceptions.InvalidOperationException;
 
 @ControllerAdvice
 public class Advice {
 	
 	 @ResponseBody
-     @ExceptionHandler(ExameNotFoundException.class)
-     @ResponseStatus(HttpStatus.NOT_FOUND)
-     String ExameNotFoundHandler(ExameNotFoundException ex) {
-             return ex.getMessage();
-     }
-	 
-	 @ResponseBody
-     @ExceptionHandler(AnimalNotFoundException.class)
-     @ResponseStatus(HttpStatus.NOT_FOUND)
-     String AnimalNotFoundHandler(AnimalNotFoundException ex) {
-             return ex.getMessage();
-     }
-	 
-	 @ResponseBody
-     @ExceptionHandler(ConsultaNotFoundException.class)
-     @ResponseStatus(HttpStatus.NOT_FOUND)
-     String ConsultaNotFoundHandler(ConsultaNotFoundException ex) {
-             return ex.getMessage();
-     }
-	 
-	 @ResponseBody
-     @ExceptionHandler(AnamneseNotFoundException.class)
-     @ResponseStatus(HttpStatus.NOT_FOUND)
-     String AnamneseNotFoundHandler(AnamneseNotFoundException ex) {
-             return ex.getMessage();
-     }
-	 
-	 @ResponseBody
-     @ExceptionHandler(DoencaNotFoundException.class)
-     @ResponseStatus(HttpStatus.NOT_FOUND)
-     String DoencaNotFoundHandler(DoencaNotFoundException ex) {
-             return ex.getMessage();
-     }
-	 
-	 @ResponseBody
      @ExceptionHandler(InvalidOperationException.class)
      @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
      String InvalidOperationHandler(InvalidOperationException ex) {
+             return ex.getMessage();
+     }
+	 
+	 @ResponseBody
+     @ExceptionHandler(EntityNotFoundException.class)
+     @ResponseStatus(HttpStatus.NOT_FOUND)
+     String EntityNotFoundHandler(EntityNotFoundException ex) {
              return ex.getMessage();
      }
 	 

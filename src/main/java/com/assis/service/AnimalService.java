@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.assis.domain.Animal;
-import com.assis.exceptions.AnimalNotFoundException;
+import com.assis.exceptions.EntityNotFoundException;
 import com.assis.repository.AnimalRepository;
 
 @Service
@@ -24,14 +24,14 @@ public class AnimalService {
 	}
 	
 	public Animal updateAnimalById(Integer id, Animal animal) {
-		Animal entityId = repo.findById(id).orElseThrow(() -> new AnimalNotFoundException(id));
+		Animal entityId = repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Animal", id));
 		animal.setId(entityId.getId());
 		return repo.save(animal);
 	}
 	
 	public Animal findAnimalById(Integer id) {
 		return repo.findById(id).
-				orElseThrow(() -> new AnimalNotFoundException(id));
+				orElseThrow(() -> new EntityNotFoundException("Animal", id));
 	}
 	
 	public void deleteAnimalById(Integer id) {

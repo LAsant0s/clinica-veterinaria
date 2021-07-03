@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.assis.domain.Animal;
 import com.assis.domain.Exame;
-import com.assis.exceptions.ExameNotFoundException;
+import com.assis.exceptions.EntityNotFoundException;
 import com.assis.repository.ExameRepository;
 
 @Service
@@ -32,15 +32,16 @@ public class ExameService {
 	}
 	
 	public Exame updateExameById(Integer id, Exame exame) {
-		Exame entityId = repo.findById(id).orElseThrow(() -> new ExameNotFoundException(id));
+		Exame entityId = repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Exame", id));
 		exame.setId(entityId.getId());
 		return repo.save(exame);
 	}
 	
 	public Exame findExameById(Integer id) {
 		return repo.findById(id).
-				orElseThrow(() -> new ExameNotFoundException(id));
+				orElseThrow(() -> new EntityNotFoundException("Exame", id));
 	}
+	
 	
 	public void deleteExameById(Integer id) {
 		repo.deleteById(id);

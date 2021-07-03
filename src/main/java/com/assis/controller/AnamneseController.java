@@ -43,8 +43,8 @@ public class AnamneseController {
 		return service.updateAnamneseById(id, anamnese); 
 	}
 	
-	@PostMapping("/insertDesease/{idAnamnese}&{idDoenca}") 
-	public Anamnese insertNewDoenca(@Valid @PathVariable Integer idAnamnese, @PathVariable Integer idDoenca) {
+	@PostMapping("/insertDesease/A={idAnamnese}&D={idDoenca}") 
+	public Anamnese insertNewDoenca(@Valid @PathVariable Integer idDoenca, @PathVariable Integer idAnamnese) {
 		return service.InsertNewDoenca(idAnamnese, idDoenca); 
 	}
 	
@@ -52,5 +52,5 @@ public class AnamneseController {
 	public void deleteAnamnese(@PathVariable Integer id) {
 		service.deleteAnamneseById(id);
 	}
-	
+
 }
